@@ -1,39 +1,37 @@
 import java.util.*;
 
 public class Artist {
-    String name;
-    Boolean isActive;
-    List albums;
+    protected String name;
+    private boolean isActive;
+    protected List<Album> albums;
 
-    Artist(String name, Boolean isActive, List albums) {
+    public Artist() {
+    }
+
+    public Artist(String name, boolean isActive, List<Album> albums) {
         this.name = name;
         this.isActive = isActive;
         this.albums = albums;
     }
 
-    public List getAlbum() {
-        /* This method returns the list of albums of the artist. */
-        return this.albums;
-    }
-
-    public String getName() {
-        /* This method returns the name of the artist. */
-        return this.name;
-    }
-
-    public List addAlbum(Album album) {
-        /* This method adds an album to the list of albums of the artists and then return the list. */
-        this.albums.add(album);
+    public List<Album> getAlbum() {
         return albums;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public void addAlbum(Album album) {
+        albums.add(album);
+    }
+
     public void removeAlbum(String albumName) {
-        /* This method removes an album in the list of albums of the artists and then return the list. */
         if (Arrays.asList(albums).contains(albumName)) {
-            this.albums.remove(albumName);
+            albums.remove(albumName);
         }
         else {
-            System.out.println("Sorry, this album is not the list.");
+            System.out.println("Sorry, this album is not in the list.");
         }
     }
 }

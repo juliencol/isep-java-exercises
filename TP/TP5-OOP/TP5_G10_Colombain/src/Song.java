@@ -1,16 +1,23 @@
 public class Song {
-    String title;
-    String duration;
+    protected String title;
+    int duration;
 
-    /* default constructor */
-    Song(String title, String duration) {
+    Song() {
+
+    }
+
+    Song(String title, int duration) {
         this.title = title;
         this.duration = duration;
     }
 
     public String toString() {
-        String result = "";
-        result = this.title + " (mm:ss)";
-        return result;
+        return title + "(" + convertDuration() + ")";
+    }
+
+    public String convertDuration() {
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+        return minutes + ":" + seconds;
     }
 }

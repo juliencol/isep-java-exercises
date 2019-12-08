@@ -1,44 +1,71 @@
 import java.util.*;
 
 public class Library {
-    static Scanner scanner = new Scanner(System.in);
-    TreeSet<Artist> library = new TreeSet<Artist>();
+    Scanner scanner;
+    TreeSet<Artist> library;
+
+    public void run() {
+        if (library == null) library = new TreeSet<>();
+        while (true) {
+            displayMenu();
+        }
+    }
 
     public void displayMenu() {
-        // This method displays a menu for the user to select an action. */
+        scanner = new Scanner(System.in);
+        int userChoice;
+        System.out.println("Press 1 to add an artist to your collection.\n" +
+                "Press 2 to delete an artist from your collection. " +
+                "Press 3 to list all available artists.\n" +
+                "Press 4 to add an album to an artist.\n" +
+                "Press 5 to remove an album from an artist.\n" +
+                "Press 6 to list the albums of a given artist."
+        );
+        do {
+            userChoice = scanner.nextInt();
+        } while (userChoice < 1 || userChoice > 6);
 
-        System.out.println("Tapez 1 pour ajouter un artiste à votre collection.\n" +
-                "Tapez 2 pour supprimer un artiste de votre collection. Tapez 3 pour lister tous les artistes.\n" +
-                "Tapez 4 pour ajouter un album à un artiste.\n" +
-                "Tapez 5 pour retirer un album à un artiste.\n" +
-                "Tapez 6 pour lister tous les albums pour un artiste donné.");
-        Integer userChoice = scanner.nextInt();
+        switch (userChoice) {
+            case 1:
+                addArtist();
+                break;
+            case 2:
+                removeArtist();
+                break;
+            case 3:
+                listArtists();
+                break;
+            case 4:
+                addAlbum();
+                break;
+            case 5:
+                removeAlbum();
+                break;
+            case 6:
+                listAlbumsForArtist();
+                break;
+        }
     }
 
     public void addArtist() {
-        /* This method allow the user to add an artist to a library. */
-
         // Create an instance of Artist
         System.out.println("Enter your artist's name: ");
         String artistName = scanner.nextLine();
-        System.out.println("Is " + artistName + " active?");
-        Boolean artistActive = scanner.nextBoolean();
-        ArrayList<String> artistAlbums = new ArrayList<String>();
-        Artist userArtist = new Artist(artistName, artistActive, artistAlbums);
+        System.out.println("Is " + artistName + " active? (y/n)");
+        boolean artistActive = scanner.nextLine().equals("y");
+        Artist userArtist = new Artist(artistName, artistActive, new ArrayList<>());
 
         // Adds the instance to the library if it's not already there
         if (library.contains(userArtist)) {
             System.out.println("Sorry, this artist is already in your library.");
         }
         else {
-            this.library.add(userArtist);
+            library.add(userArtist);
             System.out.println(userArtist.name + " has been added yo your library successfully.");
         }
     }
 
     public void removeArtist() {
-        /* This method allow the user to remove an artist from his library. */
-
         System.out.println("Enter the name of the artist you want to delete: ");
         String userArtistName = scanner.nextLine();
         for(Artist artist : library) {
@@ -52,40 +79,36 @@ public class Library {
         }
     }
 
-    public void listArtist() {
-        /* This method all the artists present in the library. */
-
+    public void listArtists() {
         for(Artist artist : library) {
             System.out.print(artist.getName());
         }
     }
 
     public void addAlbum() {
-        /* This method adds an album to an artist in the library. */
-
         System.out.println("Enter the name of an artist: ");
         String userArtistName = scanner.nextLine();
-
         for(Artist artist : library) {
             if(artist.getName().equals(userArtistName)) {
                 System.out.println("Enter the title of the album: ");
                 String userAlbumTitle = scanner.nextLine();
 
                 System.out.println("Enter the year of the album: ");
-                Integer userAlbumYear = scanner.nextInt();
+                int userAlbumYear = scanner.nextInt();
 
                 System.out.println("Enter the songs of the album: ");
-                String userAlbumSong1 = scanner.nextLine();
-                String userAlbumSong2 = scanner.nextLine();
-                ArrayList<String> userAlbumSongs = new ArrayList<String>();
+                Song userAlbumSong1 = new Song();
+                Song userAlbumSong2 = new Song();
+                ArrayList<Song> userAlbumSongs = new ArrayList<Song>();
                 userAlbumSongs.add(userAlbumSong1);
                 userAlbumSongs.add(userAlbumSong2);
+                Album userAlbum = new Album(userAlbumTitle, userAlbumYear, userAlbumSongs);
 
                 if (artist.albums.contains(userAlbumSongs)) {
                     System.out.println("Sorry, this album is already in your library.");
                 }
                 else {
-                    artist.albums.add(userAlbumSongs);
+                    artist.addAlbum(userAlbum);
                 }
             }
             else {
