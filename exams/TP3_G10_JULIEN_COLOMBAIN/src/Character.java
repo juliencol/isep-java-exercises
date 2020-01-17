@@ -1,10 +1,14 @@
+import Object.Equipment.Equipment;
+
 import java.util.*;
 
 public class Character {
     String name;
     HashMap<String, Integer> characteristics = new HashMap<>();
-    ArrayList<String> healthPoints;
-    ArrayList<String> manaPoints;
+    ArrayList<Integer> healthPoints;
+    ArrayList<Integer> manaPoints;
+    ArrayList<Equipment> inventory;
+    ArrayList<Spell> spells;
 
     public String getName() {
         return this.name;
@@ -17,22 +21,34 @@ public class Character {
         this.characteristics = characteristics;
     }
 
-    public ArrayList<String> getHealthPoints() {
+    public ArrayList<Integer> getHealthPoints() {
         return this.healthPoints;
     }
-    public void setHealthPoints(ArrayList<String> healthPoints) { this.healthPoints = healthPoints; }
+    public void setHealthPoints(ArrayList<Integer> healthPoints) { this.healthPoints = healthPoints; }
 
-    public ArrayList<String> getManaPoints () {
+    public ArrayList<Integer> getManaPoints () {
         return this.manaPoints;
     }
-    public void setManaPoints(ArrayList<String> manaPoints) {
+    public void setManaPoints(ArrayList<Integer> manaPoints) {
         this.manaPoints = manaPoints;
     }
 
-    public Character(String name, HashMap<String, Integer> characteristics, ArrayList<String> healthPoints, ArrayList<String> manaPoints) {
+    public ArrayList<Equipment> getInventory() { return this.inventory; }
+    public void setInventory(ArrayList<Equipment> inventory) {
+        this.inventory = inventory;
+    }
+
+    public ArrayList<Spell> getSpells() { return this.spells; }
+    public void setSpells(ArrayList<Spell> inventory) {
+        this.spells = spells;
+    }
+
+public Character(String name, HashMap<String, Integer> characteristics, ArrayList<Integer> healthPoints, ArrayList<Integer> manaPoints, ArrayList<Equipment> inventory, ArrayList<Spell> spells) {
         name = name;
         characteristics = characteristics;
         healthPoints = healthPoints;
         manaPoints = manaPoints;
+        inventory = inventory;
+        spells = spells;
     }
 }

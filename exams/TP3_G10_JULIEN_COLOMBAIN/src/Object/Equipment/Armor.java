@@ -8,8 +8,7 @@ public class Armor extends Equipment {
     public int getArmor() { return this.armor; }
 
     public Armor(String name, int armor) {
-        super();
-        name = name;
+        super(name);
         armor = armor;
     }
 }

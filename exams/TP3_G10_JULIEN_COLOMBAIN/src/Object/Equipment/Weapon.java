@@ -11,8 +11,7 @@ public class Weapon extends Equipment {
     public int getDamage() {return this.damage; }
 
     public Weapon(String name, int damage) {
-        super();
-        name = name;
+        super(name);
         damage = damage;
     }
 }

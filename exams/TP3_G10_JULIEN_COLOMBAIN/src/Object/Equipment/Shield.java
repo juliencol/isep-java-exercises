@@ -11,8 +11,7 @@ public class Shield extends Equipment {
     public double getBlockChance() { return this.blockChance; }
 
     public Shield(String name, double blockChance) {
-        super();
-        name = name;
+        super(name);
         blockChance = blockChance;
     }
 }
