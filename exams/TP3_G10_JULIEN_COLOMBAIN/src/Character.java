@@ -13,7 +13,6 @@ public class Character {
     public HashMap<String, Integer> getCharacteristics() {
         return this.characteristics;
     }
-
     public void setCharacteristics(HashMap<String, Integer> characteristics) {
         this.characteristics = characteristics;
     }
@@ -21,16 +20,11 @@ public class Character {
     public ArrayList<String> getHealthPoints() {
         return this.healthPoints;
     }
-
-    public void setHealthPoints(ArrayList<String> healthPoints) {
-        this.healthPoints = healthPoints;
-
-    }
+    public void setHealthPoints(ArrayList<String> healthPoints) { this.healthPoints = healthPoints; }
 
     public ArrayList<String> getManaPoints () {
         return this.manaPoints;
     }
-
     public void setManaPoints(ArrayList<String> manaPoints) {
         this.manaPoints = manaPoints;
     }

@@ -21,3 +21,4 @@ public class Spell {
         manaPointsNeeded = manaPointsNeeded;
     }
 }
+

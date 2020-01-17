@@ -1,7 +1,61 @@
+import Object.Consumable.Consumable;
+import Object.Equipment.Armor;
+import Object.Equipment.Shield;
+import Object.Equipment.Weapon;
+
 import java.util.*;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
+
+    // Creating spells
+    Spell fireBall = new Spell("boule de feu", 35, 25);
+    Spell lightStrike = new Spell("éclair en série", 8, 5);
+    Spell blizzard = new Spell("blizzard", 12, 15);
+
+    // Creating consumables
+    Consumable lifePotion = new Consumable();
+    Consumable manaPotion = new Consumable();
+    Consumable fireBallParchment = new Consumable();
+    Consumable lightStrikeParchment = new Consumable();
+    Consumable blizzardParchment = new Consumable();
+
+    // Creating equipments
+    Weapon swordIrebleue = new Weapon("Irebleue", 6);
+    Shield shieldTempete = new Shield("bouclier Tempête", 0.5);
+    Armor armorBravoureArkaine = new Armor("Bravoure d'Arkaire", 50);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void start() {
         int actionPlayerChoice = 0;
