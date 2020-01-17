@@ -8,21 +8,34 @@ import Object.Equipment.Weapon;
 import java.util.*;
 
 public class Game {
+    // Declaring useful variables
     Scanner scanner = new Scanner(System.in);
     private Object Parchment;
     private Class<? extends Consumable> Potion;
+    HashMap<String, Integer> characteristics = new HashMap<>();
+    ArrayList<Integer> healthPoints = new ArrayList<Integer>();
+    ArrayList<Integer> manaPoints = new ArrayList<Integer>();
+    ArrayList<Equipment> equipmentInventory = new  ArrayList<Equipment>();
+    ArrayList<Consumable> consumableInventory = new  ArrayList<Consumable>();
+    ArrayList<Equipment> equipments = new ArrayList<Equipment>();
+    ArrayList<Spell> spells = new ArrayList<Spell>();
 
-    public void createSpells() {
-        Spell fireBall = new Spell("boule de feu", 35, 25);
-        Spell lightStrike = new Spell("éclair en série", 8, 5);
-        Spell blizzard = new Spell("blizzard", 12, 15);
-    }
+    // Creating spells
+    Spell fireBall = new Spell("boule de feu", 35, 25);
+    Spell lightStrike = new Spell("éclair en série", 8, 5);
+    Spell blizzard = new Spell("blizzard", 12, 15);
 
-    public void createEquipments() {
-        Weapon swordIrebleue = new Weapon("Irebleue", 6);
-        Shield shieldTempete = new Shield("bouclier Tempête", 0.5);
-        Armor armorBravoureArkaine = new Armor("Bravoure d'Arkaire", 50);
-    }
+    // Creating parchments
+    Parchment fireBallParchment = new Parchment("parchemin boule de feu");
+    Parchment lightStrikeParchment = new Parchment("parchemin éclair en série");
+    Parchment blizzardParchment = new Parchment("parchemin blizzard");
+
+
+    // Creating weapons
+    Weapon swordIrebleue = new Weapon("Irebleue", 6);
+    Shield shieldTempete = new Shield("bouclier Tempête", 0.5);
+    Armor armorBravoureArkaine = new Armor("Bravoure d'Arkaire", 50);
+
 
     public void start() {
         int actionPlayerChoice = 0;
@@ -45,12 +58,8 @@ public class Game {
             System.out.println("Vous souhaitez créer un Sorcier ! Quel nom souhaitez-vous lui donner ?");
         }
         characterName = scanner.nextLine();
-        HashMap<String, Integer> characteristics = new HashMap<>();
-        ArrayList<Integer> healthPoints = new ArrayList<Integer>();
-        ArrayList<Integer> manaPoints = new ArrayList<Integer>();
-        ArrayList<Equipment> inventory = new  ArrayList<Equipment>();
-        ArrayList<Spell> spells = new  ArrayList<Spell>();
-        Character currentPlayerCharacter = new Character(characterName, characteristics, healthPoints, manaPoints, inventory, spells);
+
+        Character currentPlayerCharacter = new Character(characterName, characteristics, healthPoints, manaPoints, equipmentInventory, consumableInventory, equipments, spells);
         System.out.println("Bienvenue dans le jeu " + characterName);
 
         // 2.5.3. Menu de jeu
@@ -62,7 +71,6 @@ public class Game {
         System.out.println("(5) Jeter un sort");
         System.out.println("(6) Quitter le jeu");
         actionPlayerChoice = Integer.parseInt(scanner.nextLine());
-        while(actionPlayerChoice != 6) {
             switch(actionPlayerChoice) {
                 case 1:
                     getObjectInPlayerInventory();
@@ -80,10 +88,9 @@ public class Game {
                     throwSpell();
                     break;
                 case 6:
+                    System.out.println("A bientôt pour une nouvelle session de jeu. ");
                     break;
             }
-        }
-        System.out.println("A bientôt pour une nouvelle session de jeu. ");
     }
 
     // 2.5.4. Récupération d'objets
@@ -117,6 +124,7 @@ public class Game {
                         System.out.println("Dégâts de l’arme ?");
                         weaponDamage = Integer.parseInt(scanner.nextLine());
                         Weapon playerWeapon = new Weapon(weaponName, weaponDamage);
+                        equipmentInventory.add(playerWeapon);
                         System.out.println("Arme ajoutée à l’inventaire !");
                         break;
                     case 2:
@@ -125,6 +133,7 @@ public class Game {
                         System.out.println("Chance de bloquer ?");
                         shieldBlockChance = scanner.nextDouble();
                         Shield playerShield = new Shield(shieldName, shieldBlockChance);
+                        equipmentInventory.add(playerShield);
                         System.out.println("Arme ajoutée à l’inventaire !");
                         break;
                     case 3:
@@ -132,7 +141,8 @@ public class Game {
                         armorName = scanner.nextLine();
                         System.out.println("Armure ?");
                         armor = Integer.parseInt(scanner.nextLine());
-                        Armor playerAmor = new Armor(armorName, armor);
+                        Armor playerArmor = new Armor(armorName, armor);
+                        equipmentInventory.add(playerArmor);
                         System.out.println("Armure ajoutée à l’inventaire !");
                         break;
                 }
@@ -145,10 +155,12 @@ public class Game {
                 switch(playerConsumableTypeChoice) {
                     case 1:
                         Consumable healthPotion = new Consumable("potion de vie");
+                        consumableInventory.add(healthPotion);
                         System.out.println("Une potion de vie a été ajoutée à l'inventaire !");
                         break;
                     case 2:
                         Consumable manaPotion = new Consumable("potion de mana");
+                        consumableInventory.add(manaPotion);
                         System.out.println("Une potion de mana a été ajoutée à l'inventaire !");
                         break;
                     case 3:
@@ -160,14 +172,17 @@ public class Game {
                         switch(playerParchmentChoice) {
                             case 1:
                                 Consumable fireBallParchment = new Consumable("boule de feu");
+                                consumableInventory.add(fireBallParchment);
                                 System.out.println("Un parchemin de sort pour boule de feu a été ajouté à votre inventaire !");
                                 break;
                             case 2:
                                 Consumable lightStrikeParchment = new Consumable("éclair en série");
+                                consumableInventory.add(lightStrikeParchment);
                                 System.out.println("Un parchemin de sort pour Éclair en série a été ajouté à votre inventaire !");
                                 break;
                             case 3:
                                 Consumable blizzardParchment = new Consumable("blizzard");
+                                consumableInventory.add(blizzardParchment);
                                 System.out.println("Un parchemin de sort pour blizzard a été ajouté à votre inventaire !");
                                 break;
                         }
@@ -178,25 +193,21 @@ public class Game {
 
     // 2.5.5. Mettre un équipement
     public void putOnEquipment() {
-        // TODO : update inventory so it corresponds to the current player
         int playerPutOnEquipmentChoice = 0;
-        ArrayList<Equipment> inventory = new ArrayList<Equipment>();
-        ArrayList<Equipment> equipments = new ArrayList<Equipment>();
 
-
-        if(inventory.size() == 0) {
+        if(equipmentInventory.size() == 0) {
             System.out.println("Oups, l'inventaire est vide.");
         }
         else {
             System.out.println("Quel équipement souhaitez-vous porter ?");
-            for(Equipment equipment : inventory) {
-                for(int i = 0; i < inventory.size(); i++) {
+            for(Equipment equipment : equipmentInventory) {
+                for(int i = 0; i < equipmentInventory.size(); i++) {
                     System.out.print('('+ i + ") " + equipment.getName());
                 }
-                for(int i = 0; i < inventory.size(); i++) {
+                for(int i = 0; i < equipmentInventory.size(); i++) {
                     playerPutOnEquipmentChoice = Integer.parseInt(scanner.nextLine());
                     if(playerPutOnEquipmentChoice == i) {
-                        inventory.add(equipment);
+                        equipments.add(equipment);
                         System.out.println("Vous avez équipé " + equipment.getName() + " !");
                         break;
                     }
@@ -208,8 +219,6 @@ public class Game {
     // 2.5.5. Retirer un équipement
     public void removeEquipment() {
         int playerRemoveEquipmentChoice = 0;
-        ArrayList<Equipment> inventory = new ArrayList<Equipment>();
-        ArrayList<Equipment> equipments = new ArrayList<Equipment>();
 
         if(equipments.size() == 0) {
             System.out.println("Oups, vous ne poretez déjà aucun équipement.");
@@ -235,25 +244,53 @@ public class Game {
     // 2.5.6. Utiliser un objet consommable
     public void consumeConsumable() {
         int playerConsumeConsumableChoice = 0;
-        ArrayList<Consumable> inventory = new ArrayList<Consumable>();
 
-        if(inventory.size() == 0) {
+        if(consumableInventory.size() == 0) {
             System.out.println("Oups, l'inventaire est vide.");
         }
         else {
             System.out.println("Quel objet consommable souhaitez-vous utiliser ?");
-            for(Consumable consumable : inventory) {
-                for(int i = 0; i < inventory.size(); i++) {
+            for(Consumable consumable : consumableInventory) {
+                for(int i = 0; i < consumableInventory.size(); i++) {
                     System.out.print('('+ i + ") " + consumable.getName());
                 }
-                for(int i = 0; i < inventory.size(); i++) {
+                for(int i = 0; i < consumableInventory.size(); i++) {
                     playerConsumeConsumableChoice = Integer.parseInt(scanner.nextLine());
                     if(playerConsumeConsumableChoice == i) {
                         if (consumable.getClass() == Parchment) {
+                            if(consumable.getName() == "parchemin boule de feu" ) {
+                                spells.add(fireBall);
+                            }
+                            else if(consumable.getName() == "parchemin éclair en série") {
+                                spells.add(lightStrike);
+                            }
+                            else if(consumable.getName() == "parchemin blizzard") {
+                                spells.add(blizzard);
+                            }
                             System.out.println("Vous avez appris le sort " + consumable.getName() + " !");
                         }
                         else if (consumable.getClass() == Potion) {
                             System.out.println("Vous avez consommé " + consumable.getName() + " !");
+                            if (consumable.getName() == "potion de vie" ) {
+                                int currentHealthPoints = healthPoints.get(0);
+                                int maxHealthPoints = healthPoints.get(1);
+                                if (currentHealthPoints < maxHealthPoints - 30) {
+                                    currentHealthPoints += 30;
+                                }
+                                else {
+                                    currentHealthPoints = maxHealthPoints;
+                                }
+                            }
+                            else if(consumable.getName() == "potion de mana" ){
+                                int currentManaPoints = manaPoints.get(0);
+                                int maxManaPoints = healthPoints.get(1);
+                                if (currentManaPoints < maxManaPoints - 30) {
+                                    currentManaPoints += 30;
+                                }
+                                else {
+                                    currentManaPoints = maxManaPoints;
+                                }
+                            }
                         }
                         break;
                     }
@@ -265,14 +302,13 @@ public class Game {
     // 2.5.7. Jeter un sort
     public void throwSpell() {
         int playerThrowSpellChoice = 0;
-        ArrayList<Spell> spells= new ArrayList<Spell>();
 
         if(spells.size() == 0) {
             System.out.println("Vous ne connaissez aucun sort, vous ne pouvez rien lancer.");
         }
         else {
             System.out.println("Quel sort souhaitez-vous jeter ?");
-            for(Spell spell : spells) {
+            for(Consumable spell : consumableInventory) {
                 for(int i = 0; i < spells.size(); i++) {
                     System.out.print('('+ i + ") " + spell.getName());
                 }
