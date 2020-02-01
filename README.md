@@ -1,5 +1,7 @@
 # isep-java-exercises
 
+Java courses given by associate professor [Patrick Wang](http://patrickwang.fr/) at isep.
+
 Courses Syllabus 
 1. Introduction to Java
 2. Conditional and iterative structures
