@@ -1,6 +1,6 @@
 # isep-java-exercises
 
-Course Syllabus 
+Courses Syllabus 
 1. Introduction to Java
 2. Conditional and iterative structures
 3. Sorting algorithms, time complexity and recursivity 
