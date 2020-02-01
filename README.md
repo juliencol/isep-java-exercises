@@ -2,7 +2,7 @@
 
 Java courses given by associate professor [Patrick Wang](http://patrickwang.fr/) at isep.
 
-Courses Syllabus 
+# Courses Syllabus 
 1. Introduction to Java
 2. Conditional and iterative structures
 3. Sorting algorithms, time complexity and recursivity 
@@ -11,7 +11,7 @@ Courses Syllabus
 6. OOP 2
 7. UML and design patterns 
 
-Exercises Syllabus
+# Exercises Syllabus
 1. Introduction to Java
 2. Arrays
 3. Sorting algorithms 
