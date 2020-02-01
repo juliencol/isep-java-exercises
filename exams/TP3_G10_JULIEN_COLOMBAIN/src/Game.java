@@ -71,6 +71,7 @@ public class Game {
         System.out.println("(5) Jeter un sort");
         System.out.println("(6) Quitter le jeu");
         actionPlayerChoice = Integer.parseInt(scanner.nextLine());
+        do {
             switch(actionPlayerChoice) {
                 case 1:
                     getObjectInPlayerInventory();
@@ -91,6 +92,7 @@ public class Game {
                     System.out.println("A bientôt pour une nouvelle session de jeu. ");
                     break;
             }
+        } while(actionPlayerChoice != 6);
     }
 
     // 2.5.4. Récupération d'objets
@@ -98,13 +100,13 @@ public class Game {
         int playerObjectChoice = 0;
         int playerEquipmentTypeChoice = 0;
         int playerConsumableTypeChoice = 0;
-        String weaponName;
         int weaponDamage = 0;
-        String shieldName;
-        double shieldBlockChance = 0;
-        String armorName;
         int armor = 0;
         int playerParchmentChoice = 0;
+        double shieldBlockChance = 0;
+        String weaponName;
+        String shieldName;
+        String armorName;
 
         System.out.println("Quel type d’objet souhaitez-vous ajouter à votre inventaire ?");
         System.out.println("(1) Équipement");
@@ -194,7 +196,6 @@ public class Game {
     // 2.5.5. Mettre un équipement
     public void putOnEquipment() {
         int playerPutOnEquipmentChoice = 0;
-
         if(equipmentInventory.size() == 0) {
             System.out.println("Oups, l'inventaire est vide.");
         }
@@ -219,7 +220,6 @@ public class Game {
     // 2.5.5. Retirer un équipement
     public void removeEquipment() {
         int playerRemoveEquipmentChoice = 0;
-
         if(equipments.size() == 0) {
             System.out.println("Oups, vous ne poretez déjà aucun équipement.");
         }
@@ -244,7 +244,6 @@ public class Game {
     // 2.5.6. Utiliser un objet consommable
     public void consumeConsumable() {
         int playerConsumeConsumableChoice = 0;
-
         if(consumableInventory.size() == 0) {
             System.out.println("Oups, l'inventaire est vide.");
         }
@@ -302,7 +301,6 @@ public class Game {
     // 2.5.7. Jeter un sort
     public void throwSpell() {
         int playerThrowSpellChoice = 0;
-
         if(spells.size() == 0) {
             System.out.println("Vous ne connaissez aucun sort, vous ne pouvez rien lancer.");
         }
